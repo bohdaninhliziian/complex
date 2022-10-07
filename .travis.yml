@@ -15,3 +15,10 @@ after_success:
   - docker build -t bohdaninhliziian/multi-server ./server
   - docker build -t bohdaninhliziian/multi-worker ./worker
   - docker build -t bohdaninhliziian/multi-nginx ./nginx
+  # login to Docker gub
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # push to Docker hub
+  - docker push bohdaninhliziian/multi-client
+  - docker push bohdaninhliziian/multi-server
+  - docker push bohdaninhliziian/multi-worker
+  - docker push bohdaninhliziian/multi-nginx
